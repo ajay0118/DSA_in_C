@@ -1,3 +1,6 @@
+//Graph-
+//Directed Graph using array 
+
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -8,8 +11,6 @@
 void addEdge(int arr[MAX_V][MAX_V], int src, int des)
 {
 	arr[src][des] = 1;
-	
-	arr[des][src] = 1;
 }
 
 void printGraph(int arr[MAX_V][MAX_V], int vertices)
@@ -93,3 +94,43 @@ int main()
 	}	
 	return 0 ;
 }
+
+/*
+
+output:
+
+		MAIN MENU:
+	1. Add Edge
+	2. Print Graph
+	3. Exit
+ 
+	Enter you choice : 2
+	Adjacency matric :
+			0  0  0  0  
+			0  0  0  0  
+			0  0  0  0  
+			0  0  0  0  
+
+		MAIN MENU:
+	1. Add Edge
+	2. Print Graph
+	3. Exit
+ 
+	Enter you choice : 1
+	Enter the Source vertices (starts with 0): 1
+	Enter the Destination vertices(vertices-1) : 2
+	Edge added successfully
+		MAIN MENU:
+	1. Add Edge
+	2. Print Graph
+	3. Exit
+ 
+	Enter you choice : 2
+	Adjacency matric :
+			0  0  0  0  
+			0  0  1  0  
+			0  0  0  0  
+			0  0  0  0  
+			
+
+*/
