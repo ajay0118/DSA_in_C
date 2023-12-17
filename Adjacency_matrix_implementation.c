@@ -5,7 +5,7 @@
 
 #define MAX_V 100
 
-int arr[MAX_V][MAX_V];
+int graph[MAX_V][MAX_V];
 int vertices,i,j,choice,source,destination;
 	
 
@@ -15,7 +15,7 @@ void addEdge(int source, int destination)
 	if(source>=0 && source<vertices && destination>=0 && destination <vertices)
 	{
 		
-		arr[source][destination]=1;
+		graph[source][destination]=1;
 		printf("Edge added successfully..!");
 	}
 	else
@@ -28,7 +28,7 @@ void deleteEdge(int source, int destination)
 {
 	if(source>=0 && source<vertices && destination>=0 && destination <vertices)
 	{
-		arr[source][destination]=0;
+		graph[source][destination]=0;
 	}
 	else
 	{
@@ -46,7 +46,7 @@ void indegree(int node)
 	{
 		for(int j=0;j<vertices;j++)
 		{
-			if(arr[j][node]!=0)
+			if(graph[j][node]!=0)
 			{
 				count+=1;
 			}
@@ -66,13 +66,34 @@ void outdegree(int node)
 	{
 		for(j=0;j<vertices;j++)
 		{
-			if(arr[node][j]!=0)
+			if(graph[node][j]!=0)
 			{
 				count+=1;
 			}
 		}
 		printf("\nOutdegree of the node %d is %d",node,count);
 	}
+}
+
+
+void searchEdge(int source, int destination)
+{
+	if(source>=0 && source<vertices && destination>=0 && destination<vertices)
+	{
+		if(graph[source][destination]==1)
+		{
+			printf("\nEdge exit between %d and %d",source, destination);
+		}
+		else
+		{
+			printf("\nEdge does not exist between %d and %d", source , destination);
+		}
+	}
+	else
+	{
+		printf("Invalid vertices...!");
+	}
+	
 }
 
 void printGraph()
@@ -89,12 +110,14 @@ void printGraph()
 	{printf("%d ",i);
 		for(j=0;j<vertices;j++)
 		{
-			printf("%d ",arr[i][j]);
+			printf("%d ",graph[i][j]);
 		}
 		printf("\n");
 	}
 	
 }
+
+
 
 
 
@@ -107,12 +130,12 @@ int main()
 	{
 		for(j = 0 ; j<vertices;j++)
 		{
-			arr[i][j]=0;
+			graph[i][j]=0;
 		}
 	}
-	while(choice!=7)
+	while(choice!=8)
 	{
-		printf("\n\t\tMAIN MENU\n1.Add Edge\n2.Delete Edge\n3.Print Graph\n4.Indegree\n5.Out degree\n6.Exit\n");
+		printf("\n\t\tMAIN MENU\n1.Add Edge\n2.Delete Edge\n3.Print Graph\n4.Indegree\n5.Out degree\n6.Search Edge\n7.Exit\n");
 		
 		printf("Enter your choice:");
 		scanf("%d",&choice);
@@ -136,7 +159,8 @@ int main()
 			case 3:
 				printGraph();
 				break;
-			case 4:				printf("\nEnter the vertex: ");
+			case 4:	
+				printf("\nEnter the vertex: ");
 				scanf("%d",&source);
 				indegree(source);
 				break;
@@ -146,11 +170,17 @@ int main()
 				outdegree(source);
 				break;
 			case 6:
+			        printf("\nEnter the source vertex: ");
+         		        scanf("%d", &source);
+         		       	printf("\nEnter the destination vertex: ");
+        		       	scanf("%d", &destination);
+          			searchEdge(source, destination);
+                		break;	
+			case 7:
 				exit(0);
 			default:
 				printf("\nEnter valid input");
 		}
 	}
 }
-
 
