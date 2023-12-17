@@ -1,5 +1,3 @@
-// to check indegree and outdegree of the node :
-
 #include<stdio.h>
 #include<stdlib.h>
 
